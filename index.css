@@ -1,0 +1,267 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    color:#FFF;
+    background: #121212;
+}
+
+/* ----------------------------------TYPOGRAPHY---------------------------------*/
+
+h1, h2, h3, p {
+    margin: 0;
+}
+
+h2, h3, p {
+    line-height: 1.25rem;
+}
+
+h3, p {
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 2.7rem;
+    line-height: 1.5rem;
+    font-weight: 800; 
+    letter-spacing: -1.926px;
+}
+
+h2 {
+    font-size: 1.125rem;
+    font-weight: 500;
+    letter-spacing: 0.1px;
+}
+
+h3 {
+    font-size: 0.75rem;
+}
+
+p {
+    font-size: 0.875rem;
+    color: #A5A5A5;
+}
+
+
+a{
+    color: #FFF;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+/* ----------------------------------UTILITY------------------------------------*/
+
+.flex-container {
+    display: flex;
+}
+
+.container {
+    max-width: 768px;
+    margin: 0 auto;
+}
+
+/* ----------------------------------LAYOUT-------------------------------------*/
+
+/* 
+
+header 
+
+*/
+
+header{
+    z-index: 3;
+    position: sticky;
+    top:0;
+    height: 208px;
+    background: url("./images/40637dd9b0240098474b6d8dd9487d8c.png") rgb(20, 20, 20);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0% 24%;
+}
+
+header .container, 
+.header-primary {
+    height: 100%;
+}
+
+.header-primary {
+    padding: 10px 42px;
+    gap: 20px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* 
+
+searchbar 
+
+*/
+
+.search-container {
+    position: relative;
+    top: -20px;
+    justify-content: center;
+    padding: 0 42px;
+}
+
+.search-icon{
+    position: absolute;
+    top: 10px;
+    left: 52px;
+    width: 20px;
+    height: 20px;
+    color: #A5A5A5;
+}
+
+.search-container input,
+.search-container button {
+    padding: 9px;
+    border: none;
+    font-family: Inter;
+    font-size: 1rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+}
+
+.search-container input {
+    width: 100%;
+    padding: 0 10px 0 36px;
+    border-radius: 6px 0px 0px 6px;
+    color: #A5A5A5;
+    background: #1C1C1C;
+}
+
+.search-container button {
+    width: 120px;
+    border-radius: 0px 6px 6px 0px;
+    cursor: pointer;
+    color: #FFFFFF;
+    background: #4B4B4B;
+}
+
+/* 
+
+main - movies list
+
+*/
+
+main {
+    padding: 61px 42px;
+    flex-direction: column;
+}
+
+.movies-list {
+    flex-direction: row;
+    position: relative;
+    z-index: 1;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #2C2C2C;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.movie-img-container {
+    width: 100px;
+    height: 147px;
+    flex-shrink: 0;
+}
+
+.movie-text-container{
+    padding: 0 20px;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.movie-title,
+.movie-info,
+.info-watchlist,
+.my-watchlist-add {
+    align-items: center;
+}
+
+.movie-title, 
+.movie-rating,
+.my-watchlist-add {
+    gap:10px;
+}
+
+.movie-info{
+    gap: 18px;
+    justify-content: left;
+}
+
+.add-to-watchlist {
+    gap: 5px;
+    cursor: pointer;
+}
+
+.add-to-watchlist img,
+.movie-title img,
+.add-icon{
+    height: 16px;
+    width: 16px;
+}
+
+/* 
+
+background fixed logo 
+
+*/
+
+.movie-icon-bg {
+    position: relative;
+    top: 150px;
+    z-index: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    color: #2E2E2F;
+}
+
+.movie-icon{
+    width: 70px;
+    height: 61px;
+}
+
+/* #mywatchlist-movie-icon-bg {
+    display: none;
+} */
+
+#movie-icon-bg-text-mywatchlist {
+    color: #787878;
+}
+
+/* ----------------------------------MEDIA-QUERIES------------------------------*/
+
+@media (max-width: 500px) {
+    .header-primary,
+    .movie-info,
+    .movie-title {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    h1 {
+        font-size: 2.44rem;
+    }
+    
+    .movie-info,
+    .movie-title{
+        gap: 5px;
+        align-items: start;
+    }
+}
