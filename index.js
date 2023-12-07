@@ -158,13 +158,21 @@ function addMovieToLocalStorage(movieID) {
 
 // Function to render the watchlist
 function renderWatchlist() {
+
     // Retrieve the watchlist from local storage
     watchList = JSON.parse(localStorage.getItem("watchList")) || []
 
+    console.log(watchList)
+    
+    if(watchList.length){
+        myWatchListBackgroundEl.style.display = "none"
+    }
+    else{
+        myWatchListBackgroundEl.style.display = "flex"
+    }
     
     // Render the watchlist in the watchlist section
     myWatchListMoviesSectionEl.innerHTML = getMovieListInnerHTML(watchList)
-    myWatchListBackgroundEl.style.display = "none"
    
 }
 
@@ -172,6 +180,7 @@ function renderWatchlist() {
 if (myWatchListMoviesSectionEl && myWatchListBackgroundEl) {
     renderWatchlist()
 }
+
 
 // Function to remove a movie from the watchlist
 function removeMovieFromLocalStorage(movieID) {
