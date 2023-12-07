@@ -10,3 +10,8 @@ Requirements for this project:
 
 -Watchlist.html loads and displays data from local storage.
 
+
+
+
+to do
+

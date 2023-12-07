@@ -26,10 +26,16 @@ document.addEventListener("click", e => {
     } else if (e.target.dataset.watchlist) {
         // Add movie to watchlist
         addMovieToLocalStorage(e.target.dataset.watchlist)
+        renderMoviesArray()
     } else if (e.target.dataset.remove) {
         // Remove movie from watchlist and re-render the watchlist
         removeMovieFromLocalStorage(e.target.dataset.remove)
-        renderWatchlist()
+        if(moviesSectionEl){
+            renderMoviesArray()
+        }
+        if(myWatchListMoviesSectionEl) {
+            renderWatchlist()
+        }
     }
 })
 
@@ -156,10 +162,10 @@ function renderWatchlist() {
     watchList = JSON.parse(localStorage.getItem("watchList")) || []
 
     
-
     // Render the watchlist in the watchlist section
     myWatchListMoviesSectionEl.innerHTML = getMovieListInnerHTML(watchList)
     myWatchListBackgroundEl.style.display = "none"
+   
 }
 
 // Render the watchlist when the watchlist page elements are present
