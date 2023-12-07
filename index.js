@@ -43,7 +43,8 @@ async function getMoviesArray() {
     
     const response = await fetch(`http://www.omdbapi.com/?apikey=b66e6920&s=${movieSearchInputEl.value}&type=movie`)
     const data = await response.json()
-            
+
+
     if (data.Response === "False") {
         // Display error message if no results are found
         backgroundLogoTextEl.textContent = `Unable to find what you’re looking for. Please try another search.`
@@ -52,6 +53,7 @@ async function getMoviesArray() {
         // Hide loading icon
         backgroundLogoEl.style.display = "none"
 
+        
         const movieIdsArray = data.Search.map(movie => movie.imdbID)
 
         // Fetch detailed information for each movie in the search results
@@ -61,12 +63,13 @@ async function getMoviesArray() {
             return data
         }))
 
+
         return moviesArray
     }
 }
 
 // Function to generate HTML for displaying movies
-const getMovieListInnerHTML = (arr, iconSrc, watchlistAction, dataset) => {
+const getMovieListInnerHTML = (arr) => {
     if (!arr) {
         console.error("Movie array is undefined or null.")
         return ""
@@ -75,6 +78,19 @@ const getMovieListInnerHTML = (arr, iconSrc, watchlistAction, dataset) => {
     let moviesListHTML = ""
 
     arr.forEach(movie => {
+        const watchListIDs = watchList.map(item => item.imdbID)
+        
+        let iconSrc = "./icons/add.png"
+        let watchlistAction = "Watchlist"
+
+        if(watchListIDs.includes(movie.imdbID)){
+            console.log("adicionado")
+            iconSrc = "./icons/remove.png"
+            watchlistAction = "Remove"
+        }
+
+        const dataset = watchlistAction.toLowerCase()
+
         moviesListHTML += `
         <div class="movies-list container flex-container">
             <img class="movie-img-container" src="${movie.Poster}">
@@ -109,10 +125,8 @@ const getMovieListInnerHTML = (arr, iconSrc, watchlistAction, dataset) => {
 async function renderMoviesArray() {
     // Fetch movies and render them in the movies section
     moviesArray1 = await getMoviesArray()
-    const iconSrc = "./icons/add.png"
-    const watchlistAction = "Watchlist"
-    const dataset = "watchlist"
-    moviesSectionEl.innerHTML = getMovieListInnerHTML(moviesArray1, iconSrc, watchlistAction, dataset)
+   
+    moviesSectionEl.innerHTML = getMovieListInnerHTML(moviesArray1)
 }
 
 // Function to add a movie to the watchlist
@@ -129,7 +143,7 @@ function addMovieToLocalStorage(movieID) {
 
         // Store the updated watchlist array in local storage
         localStorage.setItem("watchList", JSON.stringify(watchList))
-
+        
         console.log("Movie added to watchlist:", targetMovieObj)
     } else {
         console.error("Movie not found in moviesArray1")
@@ -141,12 +155,10 @@ function renderWatchlist() {
     // Retrieve the watchlist from local storage
     watchList = JSON.parse(localStorage.getItem("watchList")) || []
 
-    const iconSrc = "./icons/remove.png"
-    const watchlistAction = "Remove"
-    const dataset = "remove"
+    
 
     // Render the watchlist in the watchlist section
-    myWatchListMoviesSectionEl.innerHTML = getMovieListInnerHTML(watchList, iconSrc, watchlistAction, dataset)
+    myWatchListMoviesSectionEl.innerHTML = getMovieListInnerHTML(watchList)
     myWatchListBackgroundEl.style.display = "none"
 }
 

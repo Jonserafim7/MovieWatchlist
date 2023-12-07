@@ -9,3 +9,4 @@ Requirements for this project:
 -Button to "add to watchlist" which saves that data to local storage.
 
 -Watchlist.html loads and displays data from local storage.
+
