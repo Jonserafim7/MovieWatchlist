@@ -1,4 +1,4 @@
-# Find Your Film
+# Movie Watchlist
 
 ## Project Overview
 
